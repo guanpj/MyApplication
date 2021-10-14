@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        android:id="@+id/ts1"
+        app:constraintSetStart="@+id/start"
+        app:constraintSetEnd="@+id/end"
+        app:duration="100">
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start"/>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint android:id="@+id/txt3">
+            <Transform android:translationY="20dp"/>
+        </Constraint>
+    </ConstraintSet>
+
+    <Transition
+        android:id="@+id/ts2"
+        app:constraintSetStart="@+id/start1"
+        app:constraintSetEnd="@+id/end1"
+        app:duration="100">
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start1"/>
+
+    <ConstraintSet android:id="@+id/end1">
+        <Constraint android:id="@+id/txt3">
+            <Transform android:translationY="20dp"/>
+        </Constraint>
+    </ConstraintSet>
+
+</MotionScene>
