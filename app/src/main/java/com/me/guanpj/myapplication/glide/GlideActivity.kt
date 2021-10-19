@@ -10,6 +10,9 @@ import com.me.guanpj.myapplication.R
 
 class GlideActivity : AppCompatActivity() {
     private val URL = "https://pic.rmb.bdstatic.com/1530971282b420d77bdfb6444d854f952fe31f0d1e.jpeg"
+    private val URL1 = "https://mathiasbynens.be/demo/animated-webp-supported.webp"
+    private val URL2 = "https://upload.wikimedia.org/wikipedia/commons/a/a1/Johnrogershousemay2020.webp"
+    private val URL3 = "https://78.media.tumblr.com/a0c1be3183449f0d207a022c28f4bbf7/tumblr_p1p2cduAiA1wmghc4o1_500.gif"
 
     private lateinit var image: ImageView
 
@@ -27,7 +30,7 @@ class GlideActivity : AppCompatActivity() {
             .into(image)*/
 
         GlideApp.with(this)
-            .load(URL)
+            .load(URL3)
             .placeholder(R.color.teal_200)
             .progress(this)
             .skipMemoryCache(true)
