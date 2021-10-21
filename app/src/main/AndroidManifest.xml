@@ -22,7 +22,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".LeakActivity" />
         <activity android:name=".glide.GlideActivity">
 
         </activity>
