@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import com.me.guanpj.myapplication.event.MessageEvent
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observer
 import io.reactivex.rxjava3.disposables.Disposable
@@ -15,12 +16,16 @@ import kotlinx.coroutines.launch
 import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
 import okio.IOException
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.net.Proxy
 import java.util.concurrent.CompletableFuture
 import java.util.concurrent.TimeUnit
+import kotlin.concurrent.thread
 
 
 class MainActivity : AppCompatActivity() {
@@ -31,6 +36,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        EventBus.getDefault().register(this)
 
         val client = OkHttpClient.Builder()
             .connectTimeout(15, TimeUnit.SECONDS)
@@ -106,6 +113,12 @@ class MainActivity : AppCompatActivity() {
 
         val future: CompletableFuture<List<Repo>> = service.listReposCompletable(user)
         future.thenAccept { Log.e("gpj", "size:${it.size}") }
+
+        /*val call = service.listReposOptional(user)
+        thread {
+            val optionalList = call.execute().body()
+            optionalList?.ifPresent { list -> list.map { Log.e("gpj", it.full_name) } }
+        }*/
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
@@ -129,5 +142,13 @@ class MainActivity : AppCompatActivity() {
 //        }
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN,  sticky = true, priority = 3)
+    fun onEvent3(event: MessageEvent) {
+        Log.e("gpj", "MainActivity receive msg: ${event.message}, in thread: ${Thread.currentThread().name}")
+    }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        EventBus.getDefault().unregister(this)
+    }
 }

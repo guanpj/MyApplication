@@ -7,6 +7,7 @@ import io.reactivex.rxjava3.core.Single
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
+import java.util.*
 import java.util.concurrent.CompletableFuture
 
 interface GitHubService {
@@ -21,4 +22,7 @@ interface GitHubService {
 
   @GET("users/{user}/repos")
   fun listReposCompletable(@Path("user") user: String?): CompletableFuture<List<Repo>>
+
+  @GET("users/{user}/repos")
+  fun listReposOptional(@Path("user") user: String?): Call<Optional<List<Repo>>>
 }
