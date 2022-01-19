@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Button
+        android:id="@+id/btn_start"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:text="Start Work Thread"
+        android:onClick="start"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <Button
+        android:id="@+id/btn_stop"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:text="Stop Work Thread"
+        android:onClick="stop"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_start"/>
+
+    <Button
+        android:id="@+id/btn_send_async"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:text="Send Async Message"
+        android:onClick="sendAsync"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_stop"/>
+
+    <Button
+        android:id="@+id/btn_send_sync"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:text="Send Sync Message"
+        android:onClick="sendSync"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_send_async"/>
+
+    <Button
+        android:id="@+id/btn_post_async_barrier"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:text="Post Async Barrier"
+        android:onClick="postSyncBarrier"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <Button
+        android:id="@+id/btn_remove_async_barrier"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:text="Remove Async Barrier"
+        android:onClick="removeSyncBarrier"
+        android:layout_marginTop="20dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_post_async_barrier"/>
+
+    <Button
+        android:id="@+id/btn_test"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:text="Test"
+        android:onClick="test"
+        android:layout_marginTop="20dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_remove_async_barrier"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
