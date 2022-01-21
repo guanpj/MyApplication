@@ -7,6 +7,7 @@ import android.os.Looper;
 import android.os.Message;
 import android.os.MessageQueue;
 import android.util.Log;
+import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -88,8 +89,9 @@ public class TestActivity extends AppCompatActivity {
         if (null != handler && token != -1) {
             MessageQueue queue = handler.getLooper().getQueue();
             try {
-                Method method = MessageQueue.class.getDeclaredMethod("removeSyncBarrier");
+                Method method = MessageQueue.class.getDeclaredMethod("removeSyncBarrier", int.class);
                 method.invoke(queue, token);
+                Log.e("gpj", "Token is removed:" + token);
                 token = -1;
             } catch (NoSuchMethodException e) {
                 e.printStackTrace();
@@ -131,7 +133,8 @@ public class TestActivity extends AppCompatActivity {
         handler.sendMessage(asyncMessage);
 
         try {
-            Method method = MessageQueue.class.getDeclaredMethod("removeSyncBarrier");
+            Method method = MessageQueue.class.getDeclaredMethod("removeSyncBarrier", int.class);
+            method.setAccessible(true);
             method.invoke(queue, newToken);
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
