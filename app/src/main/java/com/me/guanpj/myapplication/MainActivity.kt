@@ -39,16 +39,15 @@ class MainActivity : AppCompatActivity() {
 
         EventBus.getDefault().register(this)
 
+        val interceptor = HttpLoggingInterceptor { message ->
+            Log.i("gpj", message)
+        }
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
         val client = OkHttpClient.Builder()
             .connectTimeout(15, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
-            .proxy(Proxy.NO_PROXY)
-            .addInterceptor(HttpLoggingInterceptor { message ->
-                if (BuildConfig.DEBUG) {
-                    Log.i("OkHttp", message)
-                }
-            })
+            .addInterceptor(interceptor)
             .build()
 
         val request: Request = Request.Builder()
@@ -63,6 +62,7 @@ class MainActivity : AppCompatActivity() {
 
                 override fun onResponse(call: Call, response: Response) {
                     Log.e("gpj", "Response status code: ${response.code}")
+                    Log.e("gpj", "Response : ${response.body.toString()}")
                 }
             })
 
@@ -70,6 +70,7 @@ class MainActivity : AppCompatActivity() {
             .baseUrl("https://api.github.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
+            .client(client)
             .build()
 
         service = retrofit.create(GitHubService::class.java)
@@ -84,7 +85,7 @@ class MainActivity : AppCompatActivity() {
                 call: retrofit2.Call<List<Repo>?>,
                 response: retrofit2.Response<List<Repo>?>
             ) {
-                Log.e("gpj", "Response: ${response.body()!![0].name}")
+                Log.e("gpj", "Response: ${response.body()!![0].toString()}")
             }
         })
 

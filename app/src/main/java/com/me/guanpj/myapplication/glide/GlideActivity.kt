@@ -30,7 +30,7 @@ class GlideActivity : AppCompatActivity() {
             .into(image)*/
 
         GlideApp.with(this)
-            .load(URL3)
+            .load(URL)
             .placeholder(R.color.teal_200)
             .progress(this)
             .skipMemoryCache(true)

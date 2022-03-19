@@ -73,4 +73,7 @@ dependencies {
 
     implementation 'org.greenrobot:eventbus:3.2.0'
     kapt 'org.greenrobot:eventbus-annotation-processor:3.2.0'
+
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0'
+    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0'
 }

@@ -19,7 +19,11 @@
         </activity>
 
         <activity android:name=".glide.GlideActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <activity android:name=".event.EventBusActivity">
@@ -27,11 +31,13 @@
         </activity>
 
         <activity android:name=".TestActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        </activity>
+        <activity android:name=".CoordinatorLayoutTestActivity">
+
+        </activity>
+        <activity android:name=".TextViewActivity">
+
         </activity>
 
         <!--<meta-data
