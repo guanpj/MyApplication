@@ -33,15 +33,9 @@
         <activity android:name=".TestActivity">
 
         </activity>
-        <activity android:name=".CoordinatorLayoutTestActivity">
-
-        </activity>
-        <activity android:name=".TextViewActivity">
-
-        </activity>
 
         <!--<meta-data
-            android:name="com.me.guanpj.myapplication.MyGlideModule"
+            android:name="com.me.guanpj.myapplication.glide.MyAppGlideModule"
             android:value="GlideModule" />-->
     </application>
 
