@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.me.guanpj.myapplication.SlideDetectConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_parent"
+    android:tooltipText="cl_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fitsSystemWindows="true">
+
+    <TextView
+        android:id="@+id/top"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/white"
+        android:text="top"
+        android:gravity="center"
+        android:visibility="gone"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/cl_bottom"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_middle"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:tooltipText="cl_middle"
+        android:background="@color/teal_700"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/cl_bottom">
+
+        <TextView
+            android:id="@+id/middle"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:background="@color/black"
+            android:gravity="center"
+            android:tooltipText="middle"
+            android:text="middle"
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:tooltipText="cl_bottom"
+        android:background="@color/teal_700"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/bottom"
+            android:tooltipText="bottom"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:background="@color/black"
+            android:gravity="center"
+            android:text="bottom"
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.me.guanpj.myapplication.SlideDetectConstraintLayout>
