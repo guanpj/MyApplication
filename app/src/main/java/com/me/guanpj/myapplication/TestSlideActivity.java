@@ -34,11 +34,6 @@ public class TestSlideActivity extends AppCompatActivity implements View.OnClick
 
       clParent.setOnSwipeListener(new SlideDetectConstraintLayout.OnSwipeListener() {
          @Override
-         public void onStartSwipe() {
-            Log.e("gpj", "onStartSwipe");
-         }
-
-         @Override
          public void onSwipe(float distanceX) {
             Log.e("gpj", "onSwipe");
          }

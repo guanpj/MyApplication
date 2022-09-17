@@ -18,6 +18,7 @@ public class SlideDetectConstraintLayout extends ConstraintLayout {
     private float downX = 0f;
     private float downY = 0f;
     private boolean scrolling = false;
+    private int touchAreaHeight;
 
     private ViewConfiguration viewConfiguration;
 
@@ -32,6 +33,7 @@ public class SlideDetectConstraintLayout extends ConstraintLayout {
     public SlideDetectConstraintLayout(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         viewConfiguration = ViewConfiguration.get(context);
+        touchAreaHeight = SizeUtils.dp2px(128);
     }
 
     @Override
@@ -42,22 +44,18 @@ public class SlideDetectConstraintLayout extends ConstraintLayout {
             downX = ev.getX();
             downY = ev.getY();
 
-            /*Log.e("gpj", "height:" + getHeight());
-            Log.e("gpj", "downY:" + downY);
-            Log.e("gpj", "size:" + SizeUtils.dp2px(108));*/
-
-            if (downY < getHeight() - SizeUtils.dp2px(150)) {
-                result = true;
+            //手指按到滑动区域内就开始拦截掉父view的事件，防止滑动冲突
+            if (downY > getHeight() - touchAreaHeight) {
+                getParent().requestDisallowInterceptTouchEvent(true);
             }
         } else if (ev.getActionMasked() == MotionEvent.ACTION_MOVE) {
             if (!scrolling) {
-                float delta = downX - ev.getX();
-                if (Math.abs(delta) > SizeUtils.dp2px(5)) {
-                    scrolling = true;
-                    getParent().requestDisallowInterceptTouchEvent(true);
-                    result = true;
-                    if (null != onSwipeListener) {
-                        onSwipeListener.onStartSwipe();
+                if (downY > getHeight() - touchAreaHeight) {
+                    float delta = downX - ev.getX();
+                    //满足滑动条件，拦截所有 move 事件，走 onTouchEvent
+                    if (Math.abs(delta) > viewConfiguration.getScaledTouchSlop()) {
+                        scrolling = true;
+                        result = true;
                     }
                 }
             }
@@ -113,7 +111,6 @@ public class SlideDetectConstraintLayout extends ConstraintLayout {
     }
 
     public interface OnSwipeListener {
-        void onStartSwipe();
         void onSwipe(float distanceX);
         void onStopSwipe();
     }
